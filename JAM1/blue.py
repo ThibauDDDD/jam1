@@ -38,7 +38,6 @@ class Button():
             else:
                 self.text = self.font.render(self.text_input, True, self.base_color)
 
-
 def play():
 
     clock = pygame.time.Clock()
@@ -55,7 +54,6 @@ def play():
     # DOWNLOAD image
     background_image = pygame.image.load('ressource/image/water_background.png').convert_alpha()
     panel_image = pygame.image.load('ressource/image/panel.png').convert_alpha()
-
 
     #define font here
     font = pygame.font.SysFont('ressource/image/ARIAL.TTF', 26)
@@ -78,17 +76,14 @@ def play():
         img = font.render(text, True, text_col) 
         screen.blit(img, (x, y))
 
-
     #class ici:
     class Fighter():
-        def __init__(self, x, y, folder, image_name, max_hp, strength, potions):
+        def __init__(self, x, y, folder, image_name, max_hp, strength):
             self.folder = folder
             self.image_name = image_name
             self.max_hp = max_hp
             self.hp = max_hp
             self.strength = strength
-            self.start_potions = potions
-            self.potions = potions
             self.alive = True
             self.image = pygame.image.load(f'ressource/image/{self.folder}/{image_name}.png')
             self.rect = self.image.get_rect()
@@ -103,7 +98,6 @@ def play():
         def draw_finish_zorotl(self):
             draw_text(f'Zorotl has 0 HP, he is dead, you win !', font_comicate, white, 250, 350 + 10)
 
-
     class HealthBar():
         def __init__(self, x, y, hp, max_hp):
             self.x = x
@@ -117,7 +111,6 @@ def play():
             pygame.draw.rect(screen, red, (self.x, self.y, 150, 20))
             pygame.draw.rect(screen, blue, (self.x, self.y, 150 * ratio, 20))
 
-    color_dark = (000,000,100) 
     width = screen.get_width()
     height = screen.get_height() 
     smallfont = pygame.font.SysFont('Corbel',35)   
@@ -125,11 +118,11 @@ def play():
 
 
 
-    knight = Fighter(200, 350, 'Knight', 'blue', 150, 10, 3)
-    zorotl = Fighter(1000, 350, 'Zorotl', 'zorotl_alone', 50, 5, 1)
-    zorotl_nine = Fighter(1000, 350, 'Zorotl', 'zorotl_9', 300, 5, 1)
-    zorotl_thirtyfive = Fighter(1000, 350, 'Zorotl', 'zorotl_35', 1000, 5, 1)
-    zorotl_thousand = Fighter(1000, 350, 'Zorotl', 'zorotl_1000', 5000, 5, 1)
+    knight = Fighter(200, 350, 'Knight', 'blue', 150, 10)
+    zorotl = Fighter(1000, 350, 'Zorotl', 'zorotl_alone', 50, 5)
+    zorotl_nine = Fighter(1000, 350, 'Zorotl', 'zorotl_9', 300, 5)
+    zorotl_thirtyfive = Fighter(1000, 350, 'Zorotl', 'zorotl_35', 1000, 5)
+    zorotl_thousand = Fighter(1000, 350, 'Zorotl', 'zorotl_1000', 5000, 5)
 
     #healthbar pour les personnages150
     blue_healtbar = HealthBar(100, screen_height - bottom_panel + 40, knight.hp, knight.max_hp)
@@ -137,9 +130,11 @@ def play():
     zorotl_nine_healtbar = HealthBar(850, screen_height - bottom_panel + 40, zorotl_nine.hp, zorotl_nine.max_hp)
     zorotl_thirtyfive_healtbar = HealthBar(850, screen_height - bottom_panel + 40, zorotl_thirtyfive.hp, zorotl_thirtyfive.max_hp)
     zorotl_thousand_healtbar = HealthBar(850, screen_height - bottom_panel + 40, zorotl_thousand.hp, zorotl_thousand.max_hp)
-        
-    music = pygame.mixer.music.load("ressource/musique_ilbre_de_droit.mp3")
+
+    #play music    
+    pygame.mixer.music.load("ressource/musique_ilbre_de_droit.mp3")
     pygame.mixer.music.play()
+
     run = True
     while run:
 
@@ -205,8 +200,8 @@ def play():
                         zorotl_thousand.hp -= 20
                     knight.hp += 1
         
-        pygame.draw.rect(screen,color_dark,[width/2-100,height/2+250,140,40])
-        screen.blit(text , (width/2-100,height/2+250))
+        pygame.draw.rect(screen, (000,000,100),[width/2-100,height/2+250,140,40])
+        screen.blit(text , (width/2-70,height/2+258))
 
         pygame.display.update()
 
